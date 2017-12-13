@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<attr name="color_background_list_default" format="color" />
+
+
+	<attr name="mySelectableItemBackgroundBorderless"
+		  format="reference" />
+	<attr name="mySelectableItemBackground"
+		  format="reference" />
+
+</resources>

@@ -1,12 +1,92 @@
 <resources>
 
-	<!-- Base application theme. -->
-	<style name="AppTheme"
+	<style name="BaseAppTheme"
 		   parent="Theme.AppCompat.Light.DarkActionBar">
-		<!-- Customize your theme here. -->
+		<item name="android:textAppearance">@style/TextAppearance.IranLight</item>
+		<item name="android:textViewStyle">@style/TextAppearance.IranLight</item>
+		<item name="android:windowBackground">@android:color/white</item>
+		<item name="android:colorBackground">@color/color_gray</item>
 		<item name="colorPrimary">@color/colorPrimary</item>
 		<item name="colorPrimaryDark">@color/colorPrimaryDark</item>
 		<item name="colorAccent">@color/colorAccent</item>
+		<!--<item name="android:dropDownListViewStyle">@style/DropDownListViewStyle</item>-->
+
+		<item name="color_background_list_default">@color/color_gray</item>
 	</style>
+
+	<style name="AppTheme"
+		   parent="BaseAppTheme">
+		<item name="mySelectableItemBackground">?selectableItemBackground</item>
+		<item name="mySelectableItemBackgroundBorderless">?selectableItemBackground</item>
+	</style>
+
+	<style name="AppTheme.NoActionBar">
+		<item name="windowActionBar">false</item>
+		<item name="windowNoTitle">true</item>
+	</style>
+
+	<style name="AppTheme.AppBarOverlay"
+		   parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+	<style name="AppTheme.PopupOverlay"
+		   parent="ThemeOverlay.AppCompat.Light" />
+
+	<!-- ============================================================================================== -->
+
+
+	<style name="AppTheme.Toolbar">
+	</style>
+
+	<style name="AppTheme.Toolbar.FontButton">
+		<item name="android:layout_width">45dp</item>
+		<item name="android:layout_height">45dp</item>
+		<item name="android:clickable">true</item>
+		<item name="android:background">?mySelectableItemBackgroundBorderless</item>
+		<item name="android:gravity">center</item>
+		<item name="android:textColor">@color/color_icon_active_light</item>
+		<item name="android:textSize">28dp</item>
+		<item name="android:padding">0dp</item>
+	</style>
+
+	<!--========================================================================-->
+
+	<style name="BottomToolBar.PanelIcon">
+		<item name="android:layout_width">0dp</item>
+		<item name="android:layout_height">50dp</item>
+		<item name="android:layout_weight">1</item>
+		<item name="android:background">?mySelectableItemBackgroundBorderless</item>
+		<item name="android:clickable">true</item>
+		<item name="android:gravity">center</item>
+		<item name="android:theme">@style/SelectableItemThemeForNavigation</item>
+	</style>
+
+	<style name="SelectableItemThemeForNavigation">
+		<item name="colorControlHighlight">@color/color_navigation</item>
+	</style>
+
+	<style name="BottomToolBar.LabelIcon">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:gravity">center</item>
+		<item name="android:layout_gravity">bottom|center_horizontal</item>
+		<item name="android:textAppearance">@style/TextAppearance.IranUltraLight</item>
+		<item name="android:textColor">@color/color_text_primary_light</item>
+		<item name="android:textSize">@dimen/fontsize_small</item>
+	</style>
+
+	<style name="BottomToolBar.Icon">
+		<item name="android:layout_gravity">top|center_horizontal</item>
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:gravity">center</item>
+		<item name="android:textColor">@color/color_icon_active_light</item>
+		<item name="android:textSize">30dp</item>
+		<item name="android:padding">0dp</item>
+	</style>
+
+	<style name="BottomToolBar">
+
+	</style>
+
 
 </resources>

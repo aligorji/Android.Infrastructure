@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="iran_sans_bold">fonts/iran.sans.bold.ttf</string>
+	<string name="iran_sans_medium">fonts/iran.sans.medium.ttf</string>
+	<string name="iran_sans_regular">fonts/iran.sans.regular.ttf</string>
+	<string name="iran_sans_light">fonts/iran.sans.light.ttf</string>
+	<string name="iran_sans_ultra_light">fonts/iran.sans.ultra.light.ttf</string>
+
+	<style name="TextAppearance.IranBold"
+		   parent="android:TextAppearance">
+		<item name="fontPath">@string/iran_sans_bold</item>
+	</style>
+
+	<style name="TextAppearance.IranMedium"
+		   parent="android:TextAppearance">
+		<item name="fontPath">@string/iran_sans_medium</item>
+	</style>
+
+	<style name="TextAppearance.Iran"
+		   parent="android:TextAppearance">
+		<item name="fontPath">@string/iran_sans_regular</item>
+	</style>
+
+	<style name="TextAppearance.IranLight"
+		   parent="android:TextAppearance">
+		<item name="fontPath">@string/iran_sans_light</item>
+	</style>
+
+	<style name="TextAppearance.IranUltraLight"
+		   parent="android:TextAppearance">
+		<item name="fontPath">@string/iran_sans_ultra_light</item>
+	</style>
+
+	<dimen name="fontsize_tiny">9dp</dimen>
+	<dimen name="fontsize_smaller">11dp</dimen>
+	<dimen name="fontsize_small">12dp</dimen>
+	<dimen name="fontsize_normal">14dp</dimen>
+	<dimen name="fontsize_large">17dp</dimen>
+	<dimen name="fontsize_xlarge">20dp</dimen>
+	<dimen name="fontsize_xxlarge">24dp</dimen>
+	<dimen name="fontsize_xxxlarge">28dp</dimen>
+
+</resources>

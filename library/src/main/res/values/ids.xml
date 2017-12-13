@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<item name="swipe_refresh"
+		  type="id" />
+	<item name="action"
+		  type="id" />
+	<item name="view"
+		  type="id" />
+	<item name="fragment_place"
+		  type="id" />
+	<item name="toolbar_bottom"
+		  type="id" />
+	<item name="appbar"
+		  type="id" />
+	<item name="toolbar_title"
+		  type="id" />
+	<item name="recycler"
+		  type="id" />
+	<item name="gridview"
+		  type="id" />
+	<item name="toolbar"
+		  type="id" />
+	<item name="progress"
+		  type="id" />
+	<item name="loading_panel_progress"
+		  type="id" />
+	<item name="content_panel"
+		  type="id" />
+	<item name="icon"
+		  type="id" />
+	<item name="title"
+		  type="id" />
+	<item name="subtitle"
+		  type="id" />
+	<item name="text1"
+		  type="id" />
+	<item name="text2"
+		  type="id" />
+	<item name="indicator"
+		  type="id" />
+	<item name="viewpager"
+		  type="id" />
+	<item name="tabs"
+		  type="id" />
+	<item name="image"
+		  type="id" />
+	<item name="image2"
+		  type="id" />
+	<item name="seekbar"
+		  type="id" />
+	<item name="content"
+		  type="id" />
+	<item name="button"
+		  type="id" />
+
+</resources>

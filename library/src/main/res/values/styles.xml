@@ -1,0 +1,9 @@
+<resources>
+
+	<declare-styleable name="ScrimInsetsView">
+		<attr name="insetForegroundCus"
+			  format="reference|color" />
+	</declare-styleable>
+
+
+</resources>

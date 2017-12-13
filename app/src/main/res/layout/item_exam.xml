@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
+
+	<data>
+
+		<variable
+			name="exam"
+			type="ir.aligorji.androidinfrastructure.example.repositories.viewmodel.ExamViewModel" />
+
+	</data>
+
+
+	<LinearLayout
+		android:id="@+id/card_view"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:foreground="?android:attr/selectableItemBackground">
+
+		<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:padding="16dp">
+
+			<TextView
+				android:id="@+id/info_text"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@{exam.title}"
+				android:textSize="20dp" />
+		</RelativeLayout>
+
+	</LinearLayout>
+
+</layout>
