@@ -82,6 +82,8 @@ public abstract class MyFragment extends Fragment
         if (!onInitAdapter()) return;
         if (!onLoadData()) return;
 
+        onStartupNetworkRequest();
+
     }
 
     protected final MyActivity getSamimActivity()
@@ -126,6 +128,8 @@ public abstract class MyFragment extends Fragment
     protected abstract boolean onInitAdapter();
 
     protected abstract boolean onLoadData();
+
+    protected abstract void onStartupNetworkRequest();
 
 
     //██ ███    ███ ██████  ██      ███████ ███    ███ ███████ ███    ██ ████████ ███████
