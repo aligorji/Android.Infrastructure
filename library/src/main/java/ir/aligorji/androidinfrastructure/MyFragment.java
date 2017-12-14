@@ -29,6 +29,7 @@ public abstract class MyFragment extends Fragment
 {
 
     protected View mRootView;
+    private boolean mIsFinished = false;
 
 
     @Override
@@ -72,15 +73,36 @@ public abstract class MyFragment extends Fragment
 
         if (getArguments() != null)
         {
-            if (!onTakeArguments(getArguments()))
-            {
-                return;
-            }
+            onTakeArguments(getArguments());
+
+            //-----------------------------------------------
+            if (mIsFinished) return;
+            //-----------------------------------------------
         }
-        if (!onInitActionBar()) return;
-        if (!onInitView()) return;
-        if (!onInitAdapter()) return;
-        if (!onLoadData()) return;
+
+        onInitActionBar();
+
+        //-----------------------------------------------
+        if (mIsFinished) return;
+        //-----------------------------------------------
+
+        onInitView();
+
+        //-----------------------------------------------
+        if (mIsFinished) return;
+        //-----------------------------------------------
+
+        onInitAdapter();
+
+        //-----------------------------------------------
+        if (mIsFinished) return;
+        //-----------------------------------------------
+
+        onLoadData();
+
+        //-----------------------------------------------
+        if (mIsFinished) return;
+        //-----------------------------------------------
 
         onStartupNetworkRequest();
 
@@ -118,16 +140,15 @@ public abstract class MyFragment extends Fragment
         return true;
     }
 
+    protected abstract void onTakeArguments(Bundle arguments);
 
-    protected abstract boolean onTakeArguments(Bundle arguments);
+    protected abstract void onInitActionBar();
 
-    protected abstract boolean onInitActionBar();
+    protected abstract void onInitView();
 
-    protected abstract boolean onInitView();
+    protected abstract void onInitAdapter();
 
-    protected abstract boolean onInitAdapter();
-
-    protected abstract boolean onLoadData();
+    protected abstract void onLoadData();
 
     protected abstract void onStartupNetworkRequest();
 
@@ -152,6 +173,10 @@ public abstract class MyFragment extends Fragment
     //██   ██ ██      ██      ██      ██      ██   ██
     //██   ██ ███████ ███████ ██      ███████ ██   ██
 
+    protected void stop()
+    {
+        mIsFinished = true;
+    }
 
     ////
     //UI

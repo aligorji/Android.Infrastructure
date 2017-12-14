@@ -46,26 +46,25 @@ public class ExamPagingFragment extends MyBindingFragment
     }
 
     @Override
-    protected boolean onTakeArguments(Bundle arguments)
+    protected void onTakeArguments(Bundle arguments)
     {
-        return true;
+
     }
 
     @Override
-    protected boolean onInitActionBar()
+    protected void onInitActionBar()
     {
-        return true;
+
     }
 
     @Override
-    protected boolean onInitView()
+    protected void onInitView()
     {
 
-        return true;
     }
 
     @Override
-    protected boolean onInitAdapter()
+    protected void onInitAdapter()
     {
 
         mMyAdapter = new ExamPagingAdapter(new ArrayList<ExamViewModel>(), this);
@@ -101,12 +100,12 @@ public class ExamPagingFragment extends MyBindingFragment
             }, 3000 * i);
         }*/
 
-        return true;
+
     }
     @Override
-    protected boolean onLoadData()
+    protected void onLoadData()
     {
-        return true;
+
     }
     @Override
     protected void onStartupNetworkRequest()
