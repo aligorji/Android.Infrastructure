@@ -108,6 +108,11 @@ public class ExamPagingFragment extends MyBindingFragment
     {
         return true;
     }
+    @Override
+    protected void onStartupNetworkRequest()
+    {
+
+    }
 
 
     @Override
