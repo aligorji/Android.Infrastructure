@@ -32,12 +32,21 @@ public abstract class BindingRecyclerPagingAdapter<T extends BaseObservable, TBi
     private boolean mIsErrorDataLoading = false;
     private Object mDataLoadingErrorMessage = null;
     private boolean mScrollToLastItemAfterLazyLoad = true;
+    private OnAdapterChangeItemsListener mChangeItemsListener = null;
 
     public BindingRecyclerPagingAdapter(List<T> items, OnLoadMoreDataAdapter listener)
     {
         this.mItems = items;
         this.mOnLoadMoreDataAdapter = listener;
         setUnlimitedItems();
+    }
+
+    private void onChangeItems()
+    {
+        if (this.mChangeItemsListener != null)
+        {
+            this.mChangeItemsListener.onAdapterChangeItems();
+        }
     }
 
     @Override
@@ -161,6 +170,16 @@ public abstract class BindingRecyclerPagingAdapter<T extends BaseObservable, TBi
     //██       ██████  ██████  ███████ ██  ██████
 
 
+    public void setOnAdapterChangeItems(OnAdapterChangeItemsListener listener)
+    {
+        this.mChangeItemsListener = listener;
+    }
+
+    public OnAdapterChangeItemsListener getOnAdapterChangeItems()
+    {
+        return this.mChangeItemsListener;
+    }
+
     @Override
     public final int getItemCount()
     {
@@ -178,6 +197,16 @@ public abstract class BindingRecyclerPagingAdapter<T extends BaseObservable, TBi
     {
         mItems.add(value);
         notifyItemInserted(mItems.size() - 1);
+
+        onChangeItems();
+    }
+
+    public void update(int position, T value)
+    {
+        mItems.set(position, value);
+        notifyItemChanged(position);
+
+        onChangeItems();
     }
 
     public void remove(T value)
@@ -193,6 +222,8 @@ public abstract class BindingRecyclerPagingAdapter<T extends BaseObservable, TBi
     {
         mItems.remove(position);
         notifyItemRemoved(position);
+
+        onChangeItems();
     }
 
     public void addAll(List<T> list)
@@ -230,7 +261,15 @@ public abstract class BindingRecyclerPagingAdapter<T extends BaseObservable, TBi
                     list.size());
         }
 
+        onChangeItems();
+    }
 
+    public void clear()
+    {
+        mItems.clear();
+        notifyDataSetChanged();
+
+        onChangeItems();
     }
 
     public List<T> getItems()
@@ -241,12 +280,6 @@ public abstract class BindingRecyclerPagingAdapter<T extends BaseObservable, TBi
     private boolean isPositionInLast()
     {
         return RecyclerViewHelper.findLastVisibleItemPosition(mRecyclerView) >= mItems.size();
-    }
-
-    public void clear()
-    {
-        mItems.clear();
-        notifyDataSetChanged();
     }
 
     public final T getItem(int position)
