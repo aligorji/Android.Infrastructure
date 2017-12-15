@@ -31,6 +31,7 @@ public abstract class BindingRecyclerPagingAdapter<T extends BaseObservable, TBi
     private boolean mIsDataLoading = false;
     private boolean mIsErrorDataLoading = false;
     private Object mDataLoadingErrorMessage = null;
+    private boolean mScrollToLastItemAfterLazyLoad = true;
 
     public BindingRecyclerPagingAdapter(List<T> items, OnLoadMoreDataAdapter listener)
     {
@@ -197,22 +198,39 @@ public abstract class BindingRecyclerPagingAdapter<T extends BaseObservable, TBi
     public void addAll(List<T> list)
     {
 
-        boolean inLastList = isPositionInLast() && list.size() > 0;
-
-        int beforeAddSize = mItems.size();
-
-        notifyItemRemoved(beforeAddSize);
-
-        mItems.addAll(list);
-
-        notifyItemRangeInserted(
-                beforeAddSize,
-                list.size());
-
-        if (inLastList)
+        if (mScrollToLastItemAfterLazyLoad)
         {
-            mRecyclerView.smoothScrollToPosition(beforeAddSize);
+            boolean inLastList = isPositionInLast() && list.size() > 0;
+
+            int beforeAddSize = mItems.size();
+
+            notifyItemRemoved(beforeAddSize);
+
+            mItems.addAll(list);
+
+            notifyItemRangeInserted(
+                    beforeAddSize,
+                    list.size());
+
+            if (inLastList)
+            {
+                mRecyclerView.smoothScrollToPosition(beforeAddSize);
+            }
         }
+        else
+        {
+            int beforeAddSize = mItems.size();
+
+            notifyItemRemoved(beforeAddSize);
+
+            mItems.addAll(list);
+
+            notifyItemRangeInserted(
+                    beforeAddSize,
+                    list.size());
+        }
+
+
     }
 
     public List<T> getItems()
@@ -239,6 +257,11 @@ public abstract class BindingRecyclerPagingAdapter<T extends BaseObservable, TBi
     public void notifyBindChanged(int position)
     {
         getItem(position).notifyChange();
+    }
+
+    public void setScrollToLastItemAfterLazyLoad(boolean enable)
+    {
+        mScrollToLastItemAfterLazyLoad = enable;
     }
 
 

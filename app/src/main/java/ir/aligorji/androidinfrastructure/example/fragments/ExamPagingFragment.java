@@ -69,6 +69,8 @@ public class ExamPagingFragment extends MyBindingFragment
 
         mMyAdapter = new ExamPagingAdapter(new ArrayList<ExamViewModel>(), this);
 
+        mMyAdapter.setScrollToLastItemAfterLazyLoad(true);
+
         RecyclerView recyclerView = findRecyclerView();
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -134,11 +136,14 @@ public class ExamPagingFragment extends MyBindingFragment
                     {
                         List<ExamViewModel> viewModels = new ArrayList<>();
 
-                        Exam exam = new Exam();
-                        exam.id = 1;
-                        exam.title = "ali";
-                        ExamViewModel vm = new ExamViewModel(exam);
-                        viewModels.add(vm);
+                        for (int i=0 ; i< 20 ; i++)
+                        {
+                            Exam exam = new Exam();
+                            exam.id = i;
+                            exam.title = "ali"+i;
+                            viewModels.add(new ExamViewModel(exam));
+                        }
+
 
                         if (viewModels.isEmpty())
                         {
