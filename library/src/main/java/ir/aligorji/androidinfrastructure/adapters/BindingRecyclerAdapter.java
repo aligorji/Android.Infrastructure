@@ -140,8 +140,11 @@ public abstract class BindingRecyclerAdapter<T extends BaseObservable, TBinding 
 
     public void clear()
     {
+        int beforeAddSize = mItems.size();
+
         mItems.clear();
-        notifyDataSetChanged();
+
+        notifyItemRangeRemoved(0, beforeAddSize);
 
         onChangeItems();
     }

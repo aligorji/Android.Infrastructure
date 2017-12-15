@@ -18,7 +18,7 @@ import ir.aligorji.androidinfrastructure.example.adapters.ExamPagingAdapter;
 import ir.aligorji.androidinfrastructure.example.repositories.models.Exam;
 import ir.aligorji.androidinfrastructure.example.repositories.viewmodel.ExamViewModel;
 import ir.aligorji.androidinfrastructure.widget.BindingRecyclerOnClickListener;
-import ir.aligorji.androidinfrastructure.widget.decorations.SpacesFloatAbDecoration;
+import ir.aligorji.androidinfrastructure.widget.decorations.MyDividerItemDecoration;
 
 public class ExamPagingFragment extends MyBindingFragment
         implements
@@ -74,7 +74,7 @@ public class ExamPagingFragment extends MyBindingFragment
 
         //recyclerView.setItemAnimator(anim);
         //recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
-        recyclerView.addItemDecoration(new SpacesFloatAbDecoration(getActivity(), 16));
+        recyclerView.addItemDecoration(new MyDividerItemDecoration(getActivity(), 1, 16, 16));
 
         setRecyclerOnItemClickListener(this, mMyAdapter);
 
