@@ -116,7 +116,7 @@ public class ExamPagingFragment extends MyBindingFragment
     }
 
     int totalItems = 10;
-    int pageCount = 3;
+    int pageCount = 50;
 
     @Override
     public boolean onLoadMoreItems(final EndlessAdapter adapter, final int page)
@@ -128,7 +128,7 @@ public class ExamPagingFragment extends MyBindingFragment
             public void run()
             {
 
-                if (page == 2)
+                if (page == 1)
                 {
                     mMyAdapter.onErrorLoading("aaaaaaaa");
                     return;

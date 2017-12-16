@@ -4,4 +4,5 @@ public interface DefaultAdapter
 {
 
     Object getItem(int position);
+    int getLoadedItemCount();
 }

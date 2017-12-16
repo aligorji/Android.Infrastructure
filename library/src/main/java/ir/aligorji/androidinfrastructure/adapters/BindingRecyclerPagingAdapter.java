@@ -342,7 +342,7 @@ public abstract class BindingRecyclerPagingAdapter<T extends BaseObservable, TBi
     @Override
     public boolean isEndOfLoadItems()
     {
-        return getItemCount() - 1 >= getTotalItems();
+        return mItems.size() >= getTotalItems();
     }
 
     @Override

@@ -96,6 +96,12 @@ public abstract class BindingRecyclerAdapter<T extends BaseObservable, TBinding 
         return mItems.size();
     }
 
+    @Override
+    public final int getLoadedItemCount()
+    {
+        return getItemCount();
+    }
+
     public void add(T value)
     {
         mItems.add(value);

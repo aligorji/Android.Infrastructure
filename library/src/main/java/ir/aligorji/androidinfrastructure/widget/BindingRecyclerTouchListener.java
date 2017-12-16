@@ -38,7 +38,10 @@ public class BindingRecyclerTouchListener implements RecyclerView.OnItemTouchLis
                 {
                     int position = recyclerView.getChildAdapterPosition(child);
 
-                    clickListener.onRecyclerItemLongClickListener(child, (BaseObservable) mAdapter.getItem(position), position);
+                    if (mAdapter.getLoadedItemCount() > position)
+                    {
+                        clickListener.onRecyclerItemLongClickListener(child, (BaseObservable) mAdapter.getItem(position), position);
+                    }
                 }
             }
         });
@@ -53,7 +56,10 @@ public class BindingRecyclerTouchListener implements RecyclerView.OnItemTouchLis
         {
             int position = rv.getChildAdapterPosition(child);
 
-            clickListener.onRecyclerItemClickListener(child, (BaseObservable) mAdapter.getItem(position), position);
+            if (mAdapter.getLoadedItemCount() > position)
+            {
+                clickListener.onRecyclerItemClickListener(child, (BaseObservable) mAdapter.getItem(position), position);
+            }
         }
         return false;
     }
