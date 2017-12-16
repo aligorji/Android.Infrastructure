@@ -115,6 +115,8 @@ public class ExamPagingFragment extends MyBindingFragment
 
     }
 
+    int totalItems = 10;
+    int pageCount = 3;
 
     @Override
     public boolean onLoadMoreItems(final EndlessAdapter adapter, final int page)
@@ -125,38 +127,40 @@ public class ExamPagingFragment extends MyBindingFragment
             @Override
             public void run()
             {
-                //comment this line for endless
-                adapter.setTotalItems(50);
 
-
-                new Handler().postDelayed(new Runnable()
+                if (page == 2)
                 {
-                    @Override
-                    public void run()
-                    {
-                        List<ExamViewModel> viewModels = new ArrayList<>();
+                    mMyAdapter.onErrorLoading("aaaaaaaa");
+                    return;
+                }
 
-                        for (int i=0 ; i< 20 ; i++)
-                        {
-                            Exam exam = new Exam();
-                            exam.id = i;
-                            exam.title = "ali"+i;
-                            viewModels.add(new ExamViewModel(exam));
-                        }
+                //comment this line for endless
+                adapter.setTotalItems(10);
 
 
-                        if (viewModels.isEmpty())
-                        {
-                            adapter.setEndOfLoadItems();
-                            return;
-                        }
-                        mMyAdapter.addAll(viewModels);
-                    }
-                }, 5000);
+                List<ExamViewModel> viewModels = new ArrayList<>();
+
+
+                for (int i = 0; i < pageCount && totalItems > 0; i++)
+                {
+                    totalItems--;
+                    Exam exam = new Exam();
+                    exam.id = i;
+                    exam.title = "ali" + i;
+                    viewModels.add(new ExamViewModel(exam));
+                }
+
+
+                //if (viewModels.isEmpty())
+                //{
+                //    adapter.setEndOfLoadItems();
+                //    return;
+                //}
+                mMyAdapter.addAll(viewModels);
 
 
             }
-        }, 1000);
+        }, 2000);
 
         return true;
     }
