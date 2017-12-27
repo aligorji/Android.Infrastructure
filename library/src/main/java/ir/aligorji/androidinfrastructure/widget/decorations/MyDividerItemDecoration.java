@@ -1,6 +1,6 @@
 package ir.aligorji.androidinfrastructure.widget.decorations;
 
-import android.app.Activity;
+import android.content.Context;
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -16,11 +16,11 @@ public class MyDividerItemDecoration extends RecyclerView.ItemDecoration
     private final int mHalfHorizontalSpace;
     private final int columns;
 
-    public MyDividerItemDecoration(Activity activity, int columns, int verticalSpace, int horizontalSpace)
+    public MyDividerItemDecoration(Context context, int columns, int verticalSpace, int horizontalSpace)
     {
         this.columns = columns;
-        this.mVerticalSpace = Helper.dpToPixel(verticalSpace, activity);
-        this.mHorizontalSpace = Helper.dpToPixel(horizontalSpace, activity);
+        this.mVerticalSpace = Helper.dpToPixel(verticalSpace, context);
+        this.mHorizontalSpace = Helper.dpToPixel(horizontalSpace, context);
         this.mHalfHorizontalSpace = this.mHorizontalSpace / 2;
     }
 

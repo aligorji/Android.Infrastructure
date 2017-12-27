@@ -1,7 +1,6 @@
 package ir.aligorji.androidinfrastructure.widget;
 
 
-import android.content.Context;
 import android.databinding.BaseObservable;
 import android.support.v7.widget.RecyclerView;
 import android.view.GestureDetector;
@@ -17,12 +16,12 @@ public class BindingRecyclerTouchListener implements RecyclerView.OnItemTouchLis
     private final GestureDetector gestureDetector;
     private final BindingRecyclerOnClickListener clickListener;
 
-    public BindingRecyclerTouchListener(Context context, final RecyclerView recyclerView, final DefaultAdapter adapter, final BindingRecyclerOnClickListener clickListener)
+    public BindingRecyclerTouchListener(final RecyclerView recyclerView, final DefaultAdapter adapter, final BindingRecyclerOnClickListener clickListener)
     {
         this.clickListener = clickListener;
         this.mAdapter = adapter;
 
-        gestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener()
+        gestureDetector = new GestureDetector(recyclerView.getContext(), new GestureDetector.SimpleOnGestureListener()
         {
             @Override
             public boolean onSingleTapUp(MotionEvent e)

@@ -291,7 +291,7 @@ public abstract class MyFragment extends Fragment
         RecyclerView recyclerView = findRecyclerView();
         if (recyclerView != null)
         {
-            recyclerView.addOnItemTouchListener(new BindingRecyclerTouchListener(getActivity(), recyclerView, adapter, listener));
+            recyclerView.addOnItemTouchListener(new BindingRecyclerTouchListener(recyclerView, adapter, listener));
         }
     }
 
@@ -300,7 +300,7 @@ public abstract class MyFragment extends Fragment
         RecyclerView recyclerView = findRecyclerView();
         if (recyclerView != null)
         {
-            recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), recyclerView, listener));
+            recyclerView.addOnItemTouchListener(new RecyclerTouchListener(recyclerView, listener));
         }
     }
 

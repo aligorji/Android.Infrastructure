@@ -312,7 +312,7 @@ public abstract class MyActivity extends AppCompatActivity
     {
         if (recyclerView != null)
         {
-            recyclerView.addOnItemTouchListener(new BindingRecyclerTouchListener(this, recyclerView, adapter, listener));
+            recyclerView.addOnItemTouchListener(new BindingRecyclerTouchListener(recyclerView, adapter, listener));
         }
     }
 
@@ -326,7 +326,7 @@ public abstract class MyActivity extends AppCompatActivity
         RecyclerView recyclerView = getRecyclerView();
         if (recyclerView != null)
         {
-            recyclerView.addOnItemTouchListener(new RecyclerTouchListener(this, recyclerView, listener));
+            recyclerView.addOnItemTouchListener(new RecyclerTouchListener(recyclerView, listener));
         }
     }
 

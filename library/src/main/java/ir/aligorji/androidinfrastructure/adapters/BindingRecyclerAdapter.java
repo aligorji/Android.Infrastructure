@@ -17,7 +17,7 @@ public abstract class BindingRecyclerAdapter<T extends BaseObservable, TBinding 
         implements DefaultAdapter
 {
 
-    private final List<T> mItems;
+    private List<T> mItems;
     private OnAdapterChangeItemsListener mChangeItemsListener = null;
 
 
@@ -142,6 +142,11 @@ public abstract class BindingRecyclerAdapter<T extends BaseObservable, TBinding 
         notifyItemRangeInserted(beforeAddSize, list.size());
 
         onChangeItems();
+    }
+
+    public void changeList(List<T> list)
+    {
+        mItems = list;
     }
 
     public void clear()
