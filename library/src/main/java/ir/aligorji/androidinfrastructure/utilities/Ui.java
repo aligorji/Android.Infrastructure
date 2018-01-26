@@ -65,6 +65,25 @@ public abstract class Ui
 
     }
 
+    public static void showAsyncKeyboard(final View view, long delay)
+    {
+        if (view == null)
+        {
+            return;
+        }
+
+        view.requestFocus();
+        view.postDelayed(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                showKeyboard(view);
+            }
+        }, delay);
+
+    }
+
     public static void hideKeyboard(Activity activity)
     {
         try
