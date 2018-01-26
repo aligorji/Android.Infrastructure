@@ -33,17 +33,36 @@ public abstract class Ui
         }
     }
 
-    public static void showKeyboard(View showOnView)
+    public static void showKeyboard(View view)
     {
         try
         {
-            InputMethodManager imm = (InputMethodManager) showOnView.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.showSoftInput(showOnView, InputMethodManager.SHOW_IMPLICIT);
+            InputMethodManager imm = (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT);
         }
         catch (Throwable ignore)
         {
 
         }
+    }
+
+    public static void showAsyncKeyboard(final View view)
+    {
+        if (view == null)
+        {
+            return;
+        }
+
+        view.requestFocus();
+        view.post(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                showKeyboard(view);
+            }
+        });
+
     }
 
     public static void hideKeyboard(Activity activity)
