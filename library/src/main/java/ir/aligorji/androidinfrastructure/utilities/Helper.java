@@ -119,4 +119,40 @@ public class Helper
             }
         }
     }
+
+    public static String rialExtend(String rial)
+    {
+        return rial(rial) + " ريال";
+    }
+
+    public static String rial(String rial)
+    {
+        String result = "";
+        //1,000,000
+
+
+        int j = 0;
+        for (int i = rial.length() - 1; i >= 0; i--, j++)
+        {
+            if (j > 0 && j % 3 == 0)
+            {
+                result = "," + result;
+            }
+            result = rial.charAt(i) + result;
+        }
+
+        //or
+
+        /*int i = rial.length() - 3;
+        for (; i > 0; i -= 3)
+        {
+            result = rial.substring(i, i + 3) + ((result.isEmpty()) ? "" : "," + result);
+        }
+
+        result = rial.substring(0, i + 3) + ((result.isEmpty()) ? "" : "," + result);*/
+
+
+        return result;
+    }
+
 }
