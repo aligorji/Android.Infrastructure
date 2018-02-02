@@ -33,8 +33,9 @@ public class MyDividerItemDecoration extends RecyclerView.ItemDecoration
         outRect.left = (position % columns == 0) ? mHorizontalSpace : mHalfHorizontalSpace;
         outRect.right = (position % columns == columns - 1) ? mHorizontalSpace : mHalfHorizontalSpace;
 
-        // Add top margin only for the first item to avoid double space between items
-        if (position == 0)
+        // Add top margin only for the first item[s]
+        // when more columns, first row include this condition
+        if (position < columns)
         {
             outRect.top = 0;
             return;
