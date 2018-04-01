@@ -1,39 +1,31 @@
 package ir.aligorji.androidinfrastructure.widget;
 
-import android.content.Context;
-import android.content.res.TypedArray;
-import android.graphics.Typeface;
-import android.support.design.widget.TextInputLayout;
-import android.util.AttributeSet;
-import android.view.Gravity;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+public class MyTextInputLayout// extends TextInputLayout
+{
 
-import ir.aligorji.androidinfrastructure.R;
-import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
-
-
-public class MyTextInputLayout extends TextInputLayout {
-
-    private Typeface mTypefaceError = null;
+    /*private Typeface mTypefaceError = null;
     private boolean initErrorView = false;
 
 
-    public MyTextInputLayout(Context context) {
+    public MyTextInputLayout(Context context)
+    {
         super(context);
     }
 
-    public MyTextInputLayout(Context context, AttributeSet attrs) {
+    public MyTextInputLayout(Context context, AttributeSet attrs)
+    {
         super(context, attrs);
         setFontPath(attrs);
     }
 
-    public MyTextInputLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+    public MyTextInputLayout(Context context, AttributeSet attrs, int defStyleAttr)
+    {
         super(context, attrs, defStyleAttr);
         setFontPath(attrs);
     }
 
-    private void setFontPath(AttributeSet attrs) {
+    private void setFontPath(AttributeSet attrs)
+    {
         int attrId = CalligraphyConfig.get().getAttrId();
         String fontPath = pullHintFontPathFromTextAppearance(getContext(), attrs, attrId);
         if (fontPath == null)
@@ -44,32 +36,46 @@ public class MyTextInputLayout extends TextInputLayout {
     }
 
 
-    static String pullHintFontPathFromTextAppearance(final Context context, AttributeSet attrs, int attributeId) {
-        if (attributeId == -1 || attrs == null) {
+    static String pullHintFontPathFromTextAppearance(final Context context, AttributeSet attrs, int attributeId)
+    {
+        if (attributeId == -1 || attrs == null)
+        {
             return null;
         }
 
         int textAppearanceId = -1;
         final TypedArray typedArrayAttr = context.obtainStyledAttributes(attrs, new int[]{android.support.design.R.attr.errorTextAppearance});
-        if (typedArrayAttr != null) {
-            try {
+        if (typedArrayAttr != null)
+        {
+            try
+            {
                 textAppearanceId = typedArrayAttr.getResourceId(0, -1);
-            } catch (Exception ignored) {
+            }
+            catch (Exception ignored)
+            {
                 // Failed for some reason
                 return null;
-            } finally {
+            }
+            finally
+            {
                 typedArrayAttr.recycle();
             }
         }
 
         final TypedArray textAppearanceAttrs = context.obtainStyledAttributes(textAppearanceId, new int[]{attributeId});
-        if (textAppearanceAttrs != null) {
-            try {
+        if (textAppearanceAttrs != null)
+        {
+            try
+            {
                 return textAppearanceAttrs.getString(0);
-            } catch (Exception ignore) {
+            }
+            catch (Exception ignore)
+            {
                 // Failed for some reason.
                 return null;
-            } finally {
+            }
+            finally
+            {
                 textAppearanceAttrs.recycle();
             }
         }
@@ -106,5 +112,5 @@ public class MyTextInputLayout extends TextInputLayout {
         initErrorView = true;
     }
 
-
+*/
 }
