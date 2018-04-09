@@ -15,16 +15,26 @@ import ir.aligorji.androidinfrastructure.R;
 public abstract class BaseFragToolBarV4Binding<TBinding extends ViewDataBinding, T extends Fragment> extends BaseFragToolBarV4<T>
 {
 
-    private TBinding mBinding = null;
+    private TBinding mBinding;
 
-    public BaseFragToolBarV4Binding(T activity, @LayoutRes int layoutRes)
+    public BaseFragToolBarV4Binding(T fragment, @LayoutRes int layoutRes)
     {
-        this(activity, layoutRes, R.id.toolbar);
+        this(fragment, layoutRes, R.id.toolbar);
     }
 
-    public BaseFragToolBarV4Binding(T activity, @LayoutRes int layoutRes, @IdRes int toolbarResource)
+    public BaseFragToolBarV4Binding(T fragment, @LayoutRes int layoutRes, @IdRes int toolbarResource)
     {
-        super(activity, layoutRes, toolbarResource);
+        super(fragment, layoutRes, toolbarResource);
+
+        mBinding = null;
+
+        binding();
+    }
+
+    @Override
+    protected boolean isBinding()
+    {
+        return true;
     }
 
     @Override

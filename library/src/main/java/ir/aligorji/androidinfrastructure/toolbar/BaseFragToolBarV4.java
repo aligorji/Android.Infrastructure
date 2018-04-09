@@ -36,8 +36,21 @@ public abstract class BaseFragToolBarV4<T extends Fragment>
             throw new RuntimeException("##### Not found toolbar");
         }
 
-        initActionbar();
+        if (!isBinding())
+        {
+            initActionbar();
+        }
 
+    }
+
+    protected boolean isBinding()
+    {
+        return false;
+    }
+
+    protected void binding()
+    {
+        initActionbar();
     }
 
     private void initActionbar()
