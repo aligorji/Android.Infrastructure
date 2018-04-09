@@ -9,27 +9,27 @@
 
 	<style name="TextAppearance.IranBold"
 		   parent="android:TextAppearance">
-		<item name="fontPath">@string/iran_sans_bold</item>
+
 	</style>
 
 	<style name="TextAppearance.IranMedium"
 		   parent="android:TextAppearance">
-		<item name="fontPath">@string/iran_sans_medium</item>
+
 	</style>
 
 	<style name="TextAppearance.Iran"
 		   parent="android:TextAppearance">
-		<item name="fontPath">@string/iran_sans_regular</item>
+
 	</style>
 
 	<style name="TextAppearance.IranLight"
 		   parent="android:TextAppearance">
-		<item name="fontPath">@string/iran_sans_light</item>
+
 	</style>
 
 	<style name="TextAppearance.IranUltraLight"
 		   parent="android:TextAppearance">
-		<item name="fontPath">@string/iran_sans_ultra_light</item>
+
 	</style>
 
 	<dimen name="fontsize_tiny">9dp</dimen>

@@ -30,7 +30,7 @@ public abstract class BaseToolBar<T extends AppCompatActivity>
     {
 
         mActivity = activity;
-        mToolbar = (Toolbar) activity.findViewById(toolbarResource);
+        mToolbar = activity.findViewById(toolbarResource);
         mLayoutRes = layoutRes;
 
         if (mToolbar == null)
@@ -45,10 +45,7 @@ public abstract class BaseToolBar<T extends AppCompatActivity>
     private void initActionbar()
     {
 
-
-        LayoutInflater mInflater = LayoutInflater.from(mActivity);
-
-        View rootView = mInflater.inflate(mLayoutRes, null);
+        View rootView = initView();
 
         int[] items = getItems();
         if (items != null)
@@ -63,8 +60,8 @@ public abstract class BaseToolBar<T extends AppCompatActivity>
             }
         }
 
-        uiTxvTitle = (TextView) rootView.findViewById(R.id.title);
-        uiTxvSubtitle = (TextView) rootView.findViewById(R.id.subtitle);
+        uiTxvTitle = rootView.findViewById(R.id.title);
+        uiTxvSubtitle = rootView.findViewById(R.id.subtitle);
 
         mToolbar.removeAllViews();
 
@@ -73,6 +70,18 @@ public abstract class BaseToolBar<T extends AppCompatActivity>
         mActivity.setSupportActionBar(mToolbar);
 
         initView(rootView);
+    }
+
+    protected View initView()
+    {
+        LayoutInflater mInflater = LayoutInflater.from(mActivity);
+
+        return mInflater.inflate(mLayoutRes, null);
+    }
+
+    protected int getLayoutRes()
+    {
+        return mLayoutRes;
     }
 
     private View.OnClickListener mClickListener = new View.OnClickListener()

@@ -2,7 +2,6 @@ package ir.aligorji.androidinfrastructure;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,7 +21,6 @@ import ir.aligorji.androidinfrastructure.widget.BindingRecyclerOnClickListener;
 import ir.aligorji.androidinfrastructure.widget.BindingRecyclerTouchListener;
 import ir.aligorji.androidinfrastructure.widget.RecyclerOnClickListener;
 import ir.aligorji.androidinfrastructure.widget.RecyclerTouchListener;
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 
 public abstract class MyActivity extends AppCompatActivity
@@ -167,12 +165,6 @@ public abstract class MyActivity extends AppCompatActivity
     //██ ██  ██  ██ ██      ██      ██      ██  ██  ██ ██      ██  ██ ██    ██         ██
     //██ ██      ██ ██      ███████ ███████ ██      ██ ███████ ██   ████    ██    ███████
 
-
-    @Override
-    protected void attachBaseContext(Context newBase)
-    {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
-    }
 
     @Override
     public void onBackStackChanged()

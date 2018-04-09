@@ -4,15 +4,15 @@ apply plugin: 'com.github.dcendents.android-maven'
 group='com.github.aligorji'
 
 android {
-    compileSdkVersion 26
-
+    compileSdkVersion 27
+    buildToolsVersion "27.0.3"
 
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 26
-        versionCode 11
-        versionName "1.1.2"
+        targetSdkVersion 27
+        versionCode 22
+        versionName "2.1.0"
 
     }
 
@@ -30,8 +30,7 @@ android {
 }
 
 dependencies {
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support:recyclerview-v7:26.1.0'
-    implementation 'com.android.support:design:26.1.0'
-    implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:design:27.1.1'
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
 }
