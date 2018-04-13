@@ -246,12 +246,17 @@ public abstract class MyFragment extends Fragment
     }
 
     //////////////
-    //RecyclerView
+    //SwipeRefreshLayout
     //////////////
+
+    protected SwipeRefreshLayout findSwipeRefreshLayout()
+    {
+        return (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
+    }
 
     protected SwipeRefreshLayout initSwipeRefreshLayout(@ColorInt int... colors)
     {
-        final SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
+        final SwipeRefreshLayout swipeRefreshLayout = findSwipeRefreshLayout();
 
         if (swipeRefreshLayout != null)
         {
