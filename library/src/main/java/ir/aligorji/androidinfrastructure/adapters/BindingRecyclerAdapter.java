@@ -3,6 +3,7 @@ package ir.aligorji.androidinfrastructure.adapters;
 import android.databinding.BaseObservable;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -170,14 +171,14 @@ public abstract class BindingRecyclerAdapter<T extends BaseObservable, TBinding 
         return mItems;
     }
 
-    public Integer getItemPositionById(long id)
+    public Integer getItemPositionById(@NonNull Object id)
     {
         int index = 0;
         for (T item : mItems)
         {
             if (item instanceof IdentityViewModel)
             {
-                if (((IdentityViewModel) item).getId() == id)
+                if (id.equals(((IdentityViewModel) item).getId()))
                 {
                     return index;
                 }
