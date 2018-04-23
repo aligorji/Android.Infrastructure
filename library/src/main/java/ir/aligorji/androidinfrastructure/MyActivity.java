@@ -286,7 +286,7 @@ public abstract class MyActivity extends AppCompatActivity
     //List
     //////
 
-    private ListView findListView()
+    protected ListView findListView()
     {
         return (ListView) findViewById(android.R.id.list);
     }
@@ -295,7 +295,7 @@ public abstract class MyActivity extends AppCompatActivity
     //RecyclerView
     //////////////
 
-    private RecyclerView findRecyclerView()
+    protected RecyclerView findRecyclerView()
     {
         return (RecyclerView) findViewById(R.id.recycler);
     }
