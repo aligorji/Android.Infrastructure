@@ -286,7 +286,7 @@ public abstract class MyActivity extends AppCompatActivity
     //List
     //////
 
-    private ListView getListView()
+    private ListView findListView()
     {
         return (ListView) findViewById(android.R.id.list);
     }
@@ -295,7 +295,7 @@ public abstract class MyActivity extends AppCompatActivity
     //RecyclerView
     //////////////
 
-    private RecyclerView getRecyclerView()
+    private RecyclerView findRecyclerView()
     {
         return (RecyclerView) findViewById(R.id.recycler);
     }
@@ -310,12 +310,12 @@ public abstract class MyActivity extends AppCompatActivity
 
     protected void setRecyclerOnItemClickListener(BindingRecyclerOnClickListener listener, DefaultAdapter adapter)
     {
-        setRecyclerOnItemClickListener(getRecyclerView(), listener, adapter);
+        setRecyclerOnItemClickListener(findRecyclerView(), listener, adapter);
     }
 
     protected void setRecyclerOnItemClickListener(RecyclerOnClickListener listener)
     {
-        RecyclerView recyclerView = getRecyclerView();
+        RecyclerView recyclerView = findRecyclerView();
         if (recyclerView != null)
         {
             recyclerView.addOnItemTouchListener(new RecyclerTouchListener(recyclerView, listener));
