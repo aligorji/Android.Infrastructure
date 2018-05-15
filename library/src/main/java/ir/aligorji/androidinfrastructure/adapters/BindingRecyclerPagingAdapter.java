@@ -3,14 +3,20 @@ package ir.aligorji.androidinfrastructure.adapters;
 import android.databinding.BaseObservable;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
+import android.support.annotation.IdRes;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.HashMap;
 import java.util.List;
 
 import ir.aligorji.androidinfrastructure.widget.EndlessRecyclerViewScrollListener;
+import ir.aligorji.androidinfrastructure.widget.OnActionItemClickListener;
+import ir.aligorji.androidinfrastructure.widget.OnItemClickListener;
 import ir.aligorji.androidinfrastructure.widget.RecyclerViewHelper;
 
 
@@ -33,6 +39,8 @@ public abstract class BindingRecyclerPagingAdapter<T extends BaseObservable, TBi
     private Object mDataLoadingErrorMessage = null;
     private boolean mScrollToLastItemAfterLazyLoad = true;
     private OnAdapterChangeItemsListener mChangeItemsListener = null;
+    private HashMap<Integer, OnActionItemClickListener> mActionItems = null;
+    private OnItemClickListener mOnClickItemListener = null;
 
     public BindingRecyclerPagingAdapter(List<T> items, OnLoadMoreDataAdapter listener)
     {
@@ -92,6 +100,7 @@ public abstract class BindingRecyclerPagingAdapter<T extends BaseObservable, TBi
         return false;
     }
 
+    @NonNull
     @Override
     public final RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
@@ -110,8 +119,9 @@ public abstract class BindingRecyclerPagingAdapter<T extends BaseObservable, TBi
 
     protected abstract TLoading createLoadingViewHolder(View root);
 
+
     @Override
-    public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position)
+    public final void onBindViewHolder(@NonNull final RecyclerView.ViewHolder viewHolder, int position)
     {
         if (viewHolder instanceof InnerLoadingViewHolder)
         {
@@ -140,6 +150,57 @@ public abstract class BindingRecyclerPagingAdapter<T extends BaseObservable, TBi
                 holder.mBinding.setVariable(variableId, getItem(position));
                 holder.mBinding.executePendingBindings();
             }
+
+            //On click action items
+            if (mActionItems != null && mActionItems.size() > 0)
+            {
+                for (final int id : mActionItems.keySet())
+                {
+                    final View view = holder.mBinding.getRoot().findViewById(id);
+                    if (view != null)
+                    {
+                        final OnActionItemClickListener listener = mActionItems.get(id);
+
+                        if (listener != null)
+                        {
+                            view.setOnClickListener(new View.OnClickListener()
+                            {
+                                @Override
+                                public void onClick(View v)
+                                {
+                                    int pos = viewHolder.getAdapterPosition();
+
+                                    listener.onActionItemClickListener(view, getItem(pos), pos);
+                                }
+                            });
+                        }
+                        else
+                        {
+                            view.setOnClickListener(null);
+                        }
+                    }
+                }
+            }
+
+            //root click handler
+            if (mOnClickItemListener != null)
+            {
+                holder.mBinding.getRoot().setOnClickListener(new View.OnClickListener()
+                {
+                    @Override
+                    public void onClick(View v)
+                    {
+                        if (mOnClickItemListener != null)
+                        {
+                            int pos = viewHolder.getAdapterPosition();
+
+                            mOnClickItemListener.onItemClick(v, getItem(pos), pos);
+                        }
+                    }
+                });
+            }
+
+            //on binding
             onBinding((TBinding) holder.mBinding, position);
         }
     }
@@ -154,7 +215,7 @@ public abstract class BindingRecyclerPagingAdapter<T extends BaseObservable, TBi
 
 
     @Override
-    public void onViewDetachedFromWindow(final RecyclerView.ViewHolder viewHolder)
+    public void onViewDetachedFromWindow(@NonNull final RecyclerView.ViewHolder viewHolder)
     {
         if (viewHolder instanceof BindingRecyclerAdapter.AnimationCleanable)
         {
@@ -169,6 +230,36 @@ public abstract class BindingRecyclerPagingAdapter<T extends BaseObservable, TBi
     //██      ██    ██ ██   ██ ██      ██ ██
     //██       ██████  ██████  ███████ ██  ██████
 
+
+    public void setActionItemListener(@IdRes int id, @Nullable OnActionItemClickListener<T> listener)
+    {
+        if (mActionItems == null)
+        {
+            mActionItems = new HashMap<>();
+        }
+
+        mActionItems.put(id, listener);
+    }
+
+    public void removeActionItemListener(@IdRes int id)
+    {
+        if (mActionItems == null)
+        {
+            return;
+        }
+
+        mActionItems.put(id, null);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener<T> listener)
+    {
+        mOnClickItemListener = listener;
+    }
+
+    public OnItemClickListener<T> getOnItemClickListener()
+    {
+        return mOnClickItemListener;
+    }
 
     public void setOnAdapterChangeItems(OnAdapterChangeItemsListener listener)
     {

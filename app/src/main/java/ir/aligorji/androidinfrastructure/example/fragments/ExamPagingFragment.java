@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,8 @@ import ir.aligorji.androidinfrastructure.example.adapters.ExamPagingAdapter;
 import ir.aligorji.androidinfrastructure.example.repositories.models.Exam;
 import ir.aligorji.androidinfrastructure.example.repositories.viewmodel.ExamViewModel;
 import ir.aligorji.androidinfrastructure.widget.BindingRecyclerOnClickListener;
+import ir.aligorji.androidinfrastructure.widget.OnActionItemClickListener;
+import ir.aligorji.androidinfrastructure.widget.OnItemClickListener;
 import ir.aligorji.androidinfrastructure.widget.decorations.MyDividerItemDecoration;
 
 public class ExamPagingFragment extends MyBindingFragment
@@ -78,7 +81,24 @@ public class ExamPagingFragment extends MyBindingFragment
         //recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
         recyclerView.addItemDecoration(new MyDividerItemDecoration(getActivity(), 1, 16, 16));
 
-        setRecyclerOnItemClickListener(this, mMyAdapter);
+        //setRecyclerOnItemClickListener(this, mMyAdapter);
+        mMyAdapter.setActionItemListener(R.id.delete, new OnActionItemClickListener<ExamViewModel>()
+        {
+            @Override
+            public void onActionItemClickListener(View view, ExamViewModel model, int position)
+            {
+                Toast.makeText(getActivity(), position + "'" + model.getTitle(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        mMyAdapter.setOnItemClickListener(new OnItemClickListener<ExamViewModel>()
+        {
+            @Override
+            public void onItemClick(View view, ExamViewModel model, int position)
+            {
+                Toast.makeText(getActivity(), "ITEM CLICK: " +position + "'" + model.getTitle(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
         recyclerView.setAdapter(mMyAdapter);
 
@@ -128,11 +148,11 @@ public class ExamPagingFragment extends MyBindingFragment
             public void run()
             {
 
-                if (page == 1)
-                {
-                    mMyAdapter.onErrorLoading("aaaaaaaa");
-                    return;
-                }
+                //if (page == 1)
+                //{
+                //    mMyAdapter.onErrorLoading("aaaaaaaa");
+                //    return;
+                //}
 
                 //comment this line for endless
                 adapter.setTotalItems(10);
@@ -168,9 +188,10 @@ public class ExamPagingFragment extends MyBindingFragment
     public void onRecyclerItemClickListener(View view, ExamViewModel model, final int position)
     {
 
-        mMyAdapter.getItem(position).setTitle("XXX***");
-        mMyAdapter.getItem(position + -1).setTitle("XXXZZZ");
-        mMyAdapter.getItem(position + 1).setTitle("XXXAAA");
+        Toast.makeText(getActivity(), position + "'", Toast.LENGTH_SHORT).show();
+        //mMyAdapter.getItem(position).setTitle("XXX***");
+        //mMyAdapter.getItem(position + -1).setTitle("XXXZZZ");
+        //mMyAdapter.getItem(position + 1).setTitle("XXXAAA");
 
     }
     @Override

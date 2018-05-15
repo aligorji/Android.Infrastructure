@@ -3,14 +3,20 @@ package ir.aligorji.androidinfrastructure.adapters;
 import android.databinding.BaseObservable;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
+import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.HashMap;
 import java.util.List;
 
 import ir.aligorji.androidinfrastructure.models.IdentityViewModel;
+import ir.aligorji.androidinfrastructure.widget.OnActionItemClickListener;
+import ir.aligorji.androidinfrastructure.widget.OnItemClickListener;
 
 
 public abstract class BindingRecyclerAdapter<T extends BaseObservable, TBinding extends ViewDataBinding>
@@ -19,7 +25,9 @@ public abstract class BindingRecyclerAdapter<T extends BaseObservable, TBinding 
 {
 
     private List<T> mItems;
+    private HashMap<Integer, OnActionItemClickListener> mActionItems = null;
     private OnAdapterChangeItemsListener mChangeItemsListener = null;
+    private OnItemClickListener mOnClickItemListener = null;
 
 
     public BindingRecyclerAdapter(List<T> items)
@@ -52,15 +60,67 @@ public abstract class BindingRecyclerAdapter<T extends BaseObservable, TBinding 
     }
 
     @Override
-    public final void onBindViewHolder(ViewHolder holder, int position)
+    public final void onBindViewHolder(final ViewHolder viewHolder, int position)
     {
         int variableId = getBindingVariableId();
         if (variableId > 0)
         {
-            holder.mBinding.setVariable(variableId, getItem(position));
-            holder.mBinding.executePendingBindings();
+            viewHolder.mBinding.setVariable(variableId, getItem(position));
+            viewHolder.mBinding.executePendingBindings();
         }
-        onBinding((TBinding) holder.mBinding, position);
+
+        //On click action items
+        if (mActionItems != null && mActionItems.size() > 0)
+        {
+            for (final int id : mActionItems.keySet())
+            {
+                final View view = viewHolder.mBinding.getRoot().findViewById(id);
+                if (view != null)
+                {
+                    final OnActionItemClickListener listener = mActionItems.get(id);
+
+                    if (listener != null)
+                    {
+                        view.setOnClickListener(new View.OnClickListener()
+                        {
+                            @Override
+                            public void onClick(View v)
+                            {
+                                int pos = viewHolder.getAdapterPosition();
+
+                                listener.onActionItemClickListener(view, getItem(pos), pos);
+                            }
+                        });
+                    }
+                    else
+                    {
+                        view.setOnClickListener(null);
+                    }
+                }
+            }
+        }
+
+        //root click handler
+        if (mOnClickItemListener != null)
+        {
+            viewHolder.mBinding.getRoot().setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    if (mOnClickItemListener != null)
+                    {
+                        int pos = viewHolder.getAdapterPosition();
+
+                        mOnClickItemListener.onItemClick(v, getItem(pos), pos);
+                    }
+                }
+            });
+        }
+
+
+        //on binding
+        onBinding((TBinding) viewHolder.mBinding, position);
     }
 
     @Override
@@ -73,13 +133,42 @@ public abstract class BindingRecyclerAdapter<T extends BaseObservable, TBinding 
 
     protected abstract void onBinding(TBinding binding, int position);
 
-
     //██████  ██    ██ ██████  ██      ██  ██████
     //██   ██ ██    ██ ██   ██ ██      ██ ██
     //██████  ██    ██ ██████  ██      ██ ██
     //██      ██    ██ ██   ██ ██      ██ ██
     //██       ██████  ██████  ███████ ██  ██████
 
+
+    public void setActionItemListener(@IdRes int id, @Nullable OnActionItemClickListener<T> listener)
+    {
+        if (mActionItems == null)
+        {
+            mActionItems = new HashMap<>();
+        }
+
+        mActionItems.put(id, listener);
+    }
+
+    public void removeActionItemListener(@IdRes int id)
+    {
+        if (mActionItems == null)
+        {
+            return;
+        }
+
+        mActionItems.put(id, null);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener<T> listener)
+    {
+        mOnClickItemListener = listener;
+    }
+
+    public OnItemClickListener<T> getOnItemClickListener()
+    {
+        return mOnClickItemListener;
+    }
 
     public void setOnAdapterChangeItems(OnAdapterChangeItemsListener listener)
     {
@@ -229,5 +318,6 @@ public abstract class BindingRecyclerAdapter<T extends BaseObservable, TBinding 
 
         void clearAnimation();
     }
+
 
 }
