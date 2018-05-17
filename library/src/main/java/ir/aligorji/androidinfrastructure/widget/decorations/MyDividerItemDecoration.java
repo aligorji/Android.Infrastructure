@@ -15,10 +15,17 @@ public class MyDividerItemDecoration extends RecyclerView.ItemDecoration
     private final int mHorizontalSpace;
     private final int mHalfHorizontalSpace;
     private final int columns;
+    private final boolean reverse;
 
     public MyDividerItemDecoration(Context context, int columns, int verticalSpace, int horizontalSpace)
     {
+        this(context, columns, verticalSpace, horizontalSpace, false);
+    }
+
+    public MyDividerItemDecoration(Context context, int columns, int verticalSpace, int horizontalSpace, boolean reverse)
+    {
         this.columns = columns;
+        this.reverse = reverse;
         this.mVerticalSpace = Helper.dpToPixel(verticalSpace, context);
         this.mHorizontalSpace = Helper.dpToPixel(horizontalSpace, context);
         this.mHalfHorizontalSpace = this.mHorizontalSpace / 2;
@@ -37,11 +44,25 @@ public class MyDividerItemDecoration extends RecyclerView.ItemDecoration
         // when more columns, first row include this condition
         if (position < columns)
         {
-            outRect.top = 0;
+            if (reverse)
+            {
+                outRect.bottom = 0;
+            }
+            else
+            {
+                outRect.top = 0;
+            }
             return;
         }
 
-        outRect.top = mVerticalSpace;
+        if (reverse)
+        {
+            outRect.bottom = mVerticalSpace;
+        }
+        else
+        {
+            outRect.top = mVerticalSpace;
+        }
 
     }
 }

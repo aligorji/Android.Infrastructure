@@ -295,7 +295,7 @@ public abstract class BindingRecyclerPagingAdapter<T extends BaseObservable, TBi
 
     public void add(int index, T value)
     {
-        mItems.add(value);
+        mItems.add(index, value);
 
         notifyItemInserted(index);
 

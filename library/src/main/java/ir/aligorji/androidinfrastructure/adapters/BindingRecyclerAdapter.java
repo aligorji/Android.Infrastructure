@@ -203,7 +203,7 @@ public abstract class BindingRecyclerAdapter<T extends BaseObservable, TBinding 
 
     public void add(int index, T value)
     {
-        mItems.add(value);
+        mItems.add(index, value);
 
         notifyItemInserted(index);
 
