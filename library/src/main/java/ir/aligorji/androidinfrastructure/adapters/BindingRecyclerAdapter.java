@@ -195,7 +195,17 @@ public abstract class BindingRecyclerAdapter<T extends BaseObservable, TBinding 
     public void add(T value)
     {
         mItems.add(value);
+
         notifyItemInserted(mItems.size() - 1);
+
+        onChangeItems();
+    }
+
+    public void add(int index, T value)
+    {
+        mItems.add(value);
+
+        notifyItemInserted(index);
 
         onChangeItems();
     }

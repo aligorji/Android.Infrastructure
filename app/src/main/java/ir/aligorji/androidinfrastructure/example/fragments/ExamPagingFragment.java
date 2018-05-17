@@ -96,6 +96,11 @@ public class ExamPagingFragment extends MyBindingFragment
             @Override
             public void onItemClick(View view, ExamViewModel model, int position)
             {
+                Exam exam = new Exam();
+                exam.id = 9999;
+                exam.title = "aliXXX";
+                mMyAdapter.add(0, ExamViewModel.create(exam));
+
                 Toast.makeText(getActivity(), "ITEM CLICK: " +position + "'" + model.getTitle(), Toast.LENGTH_SHORT).show();
             }
             @Override
