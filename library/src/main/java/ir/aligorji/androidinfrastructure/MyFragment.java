@@ -30,7 +30,7 @@ public abstract class MyFragment extends Fragment
 
     protected View mRootView;
     private boolean mIsFinished = false;
-
+    private RecyclerView.OnItemTouchListener mTouchListener = null;
 
     @Override
     public final void onAttach(Activity activity)
@@ -296,7 +296,12 @@ public abstract class MyFragment extends Fragment
         RecyclerView recyclerView = findRecyclerView();
         if (recyclerView != null)
         {
-            recyclerView.addOnItemTouchListener(new BindingRecyclerTouchListener(recyclerView, adapter, listener));
+            if (mTouchListener == null)
+            {
+                mTouchListener = new BindingRecyclerTouchListener(recyclerView, adapter, listener);
+            }
+            recyclerView.removeOnItemTouchListener(mTouchListener);
+            recyclerView.addOnItemTouchListener(mTouchListener);
         }
     }
 
@@ -305,7 +310,12 @@ public abstract class MyFragment extends Fragment
         RecyclerView recyclerView = findRecyclerView();
         if (recyclerView != null)
         {
-            recyclerView.addOnItemTouchListener(new RecyclerTouchListener(recyclerView, listener));
+            if (mTouchListener == null)
+            {
+                mTouchListener = new RecyclerTouchListener(recyclerView, listener);
+            }
+            recyclerView.removeOnItemTouchListener(mTouchListener);
+            recyclerView.addOnItemTouchListener(mTouchListener);
         }
     }
 

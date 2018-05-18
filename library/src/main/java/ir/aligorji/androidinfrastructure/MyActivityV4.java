@@ -29,6 +29,7 @@ public abstract class MyActivityV4 extends AppCompatActivity
 
     protected final AppCompatActivity THIS;
     private boolean mIsFinished = false;
+    private RecyclerView.OnItemTouchListener mTouchListener = null;
 
     public MyActivityV4()
     {
@@ -304,7 +305,12 @@ public abstract class MyActivityV4 extends AppCompatActivity
     {
         if (recyclerView != null)
         {
-            recyclerView.addOnItemTouchListener(new BindingRecyclerTouchListener(recyclerView, adapter, listener));
+            if (mTouchListener == null)
+            {
+                mTouchListener = new BindingRecyclerTouchListener(recyclerView, adapter, listener);
+            }
+            recyclerView.removeOnItemTouchListener(mTouchListener);
+            recyclerView.addOnItemTouchListener(mTouchListener);
         }
     }
 
@@ -318,7 +324,12 @@ public abstract class MyActivityV4 extends AppCompatActivity
         RecyclerView recyclerView = findRecyclerView();
         if (recyclerView != null)
         {
-            recyclerView.addOnItemTouchListener(new RecyclerTouchListener(recyclerView, listener));
+            if (mTouchListener == null)
+            {
+                mTouchListener = new RecyclerTouchListener(recyclerView, listener);
+            }
+            recyclerView.removeOnItemTouchListener(mTouchListener);
+            recyclerView.addOnItemTouchListener(mTouchListener);
         }
     }
 
