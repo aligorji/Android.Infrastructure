@@ -76,7 +76,7 @@ public abstract class BaseFragToolBarV4<T extends Fragment>
 
         mToolbar.removeAllViews();
 
-        mToolbar.addView(rootView);
+        mToolbar.addView(rootView, new Toolbar.LayoutParams(Toolbar.LayoutParams.MATCH_PARENT, Toolbar.LayoutParams.MATCH_PARENT));
 
         initView(rootView);
     }

@@ -65,9 +65,10 @@ public abstract class BaseToolBar<T extends AppCompatActivity>
 
         mToolbar.removeAllViews();
 
-        mToolbar.addView(rootView);
+        mToolbar.addView(rootView, new Toolbar.LayoutParams(Toolbar.LayoutParams.MATCH_PARENT, Toolbar.LayoutParams.MATCH_PARENT));
 
-        mActivity.setSupportActionBar(mToolbar);
+        //don't need, because add title label
+        //mActivity.setSupportActionBar(mToolbar);
 
         initView(rootView);
     }

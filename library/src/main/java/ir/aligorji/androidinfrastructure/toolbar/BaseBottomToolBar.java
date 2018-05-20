@@ -4,6 +4,7 @@ package ir.aligorji.androidinfrastructure.toolbar;
 import android.app.Activity;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,7 +61,7 @@ public abstract class BaseBottomToolBar
             }
         }
 
-        mToolbar.addView(rootView);
+        mToolbar.addView(rootView, new Toolbar.LayoutParams(Toolbar.LayoutParams.MATCH_PARENT, Toolbar.LayoutParams.MATCH_PARENT));
 
         initView(rootView);
     }
