@@ -2,6 +2,7 @@ package ir.aligorji.androidinfrastructure.utilities;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -99,6 +100,16 @@ public abstract class Ui
         {
 
         }
+    }
+
+    public static boolean isLandscape(Activity activity)
+    {
+        return activity.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
+    }
+
+    public static boolean isPortrait(Activity activity)
+    {
+        return activity.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
     }
 
 

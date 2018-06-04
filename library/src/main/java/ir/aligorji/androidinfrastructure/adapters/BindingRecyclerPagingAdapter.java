@@ -75,11 +75,13 @@ public abstract class BindingRecyclerPagingAdapter<T extends BaseObservable, TBi
     public abstract int getLoadingViewId();
 
     @Override
-    public final void onAttachedToRecyclerView(RecyclerView recyclerView)
+    public final void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView)
     {
         super.onAttachedToRecyclerView(recyclerView);
 
         mRecyclerView = recyclerView;
+
+        recyclerView.clearOnScrollListeners();
         recyclerView.addOnScrollListener(new EndlessRecyclerViewScrollListener(recyclerView, mCurrentPage)
         {
             @Override
