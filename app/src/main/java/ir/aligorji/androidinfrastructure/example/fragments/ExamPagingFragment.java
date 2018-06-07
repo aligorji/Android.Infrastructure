@@ -104,9 +104,9 @@ public class ExamPagingFragment extends MyBindingFragment
                 Toast.makeText(getActivity(), "ITEM CLICK: " +position + "'" + model.getTitle(), Toast.LENGTH_SHORT).show();
             }
             @Override
-            public void onItemLongClick(View view, ExamViewModel model, int position)
+            public boolean onItemLongClick(View view, ExamViewModel model, int position)
             {
-
+                return true;
             }
         });
 

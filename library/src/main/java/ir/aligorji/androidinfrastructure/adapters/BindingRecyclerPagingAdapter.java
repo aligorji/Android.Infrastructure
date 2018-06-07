@@ -40,7 +40,7 @@ public abstract class BindingRecyclerPagingAdapter<T extends BaseObservable, TBi
     private boolean mScrollToLastItemAfterLazyLoad = true;
     private OnAdapterChangeItemsListener mChangeItemsListener = null;
     private HashMap<Integer, OnActionItemClickListener> mActionItems = null;
-    private OnItemClickListener mOnClickItemListener = null;
+    private OnItemClickListener<T> mOnClickItemListener = null;
 
     public BindingRecyclerPagingAdapter(List<T> items, OnLoadMoreDataAdapter listener)
     {
@@ -198,6 +198,21 @@ public abstract class BindingRecyclerPagingAdapter<T extends BaseObservable, TBi
 
                             mOnClickItemListener.onItemClick(v, getItem(pos), pos);
                         }
+                    }
+                });
+                holder.mBinding.getRoot().setOnLongClickListener(new View.OnLongClickListener()
+                {
+                    @Override
+                    public boolean onLongClick(View v)
+                    {
+                        if (mOnClickItemListener != null)
+                        {
+                            int pos = viewHolder.getAdapterPosition();
+
+                            return mOnClickItemListener.onItemLongClick(v, getItem(pos), pos);
+                        }
+
+                        return false;
                     }
                 });
             }
