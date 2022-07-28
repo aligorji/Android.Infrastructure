@@ -116,6 +116,19 @@ public abstract class BindingRecyclerAdapter<T extends BaseObservable, TBinding 
                     }
                 }
             });
+            viewHolder.mBinding.getRoot().setOnLongClickListener(new View.OnLongClickListener()
+            {
+                @Override
+                public boolean onLongClick(View v) {
+                {
+                    if (mOnClickItemListener != null)
+                    {
+                        int pos = viewHolder.getAdapterPosition();
+
+                        return mOnClickItemListener.onItemLongClick(v, getItem(pos), pos);
+                    }
+                }
+            });
         }
 
 
