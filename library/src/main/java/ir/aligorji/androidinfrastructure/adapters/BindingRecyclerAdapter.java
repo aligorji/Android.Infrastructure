@@ -127,6 +127,7 @@ public abstract class BindingRecyclerAdapter<T extends BaseObservable, TBinding 
 
                         return mOnClickItemListener.onItemLongClick(v, getItem(pos), pos);
                     }
+                    return false;
                 }
             });
         }
