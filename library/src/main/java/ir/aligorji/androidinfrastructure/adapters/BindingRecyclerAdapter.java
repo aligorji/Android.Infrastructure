@@ -119,7 +119,7 @@ public abstract class BindingRecyclerAdapter<T extends BaseObservable, TBinding 
             viewHolder.mBinding.getRoot().setOnLongClickListener(new View.OnLongClickListener()
             {
                 @Override
-                public boolean onLongClick(View v) {
+                public boolean onLongClick(View v)
                 {
                     if (mOnClickItemListener != null)
                     {
